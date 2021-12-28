@@ -2,27 +2,41 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 func main() {
 
 	var nums []int
 
-	var num int
+	var input string
 
 	for {
 		fmt.Print("Enter number: ")
 
-		fmt.Scan(&num)
+		_, err := fmt.Scanln(&input)
 
-		if num == 0 {
+		if err != nil && err.Error() == "unexpected newline" {
+			fmt.Println("")
 			break
 		} else {
-			nums = append(nums, num)
+
+			fmt.Println(input)
+
+			if num, err := strconv.Atoi(input); err == nil {
+				nums = append(nums, num)
+			} else {
+				fmt.Println("Couldnt convert input to int")
+			}
 		}
 
 	}
-	fmt.Print(sum(nums))
+
+	if len(nums) != 0 {
+		fmt.Println("Sum of array is", sum(nums))
+	} else {
+		fmt.Println("Empty array")
+	}
 }
 
 // func add(x int, y int) int {
