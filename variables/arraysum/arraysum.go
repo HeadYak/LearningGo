@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 	"strconv"
 )
 
@@ -21,7 +22,7 @@ func main() {
 			break
 		} else {
 
-			fmt.Println(input)
+			// fmt.Println(input)
 
 			if num, err := strconv.Atoi(input); err == nil {
 				nums = append(nums, num)
@@ -33,7 +34,10 @@ func main() {
 	}
 
 	if len(nums) != 0 {
-		fmt.Println("Sum of array is", sum(nums))
+		fmt.Println("Sum:", sum(nums))
+		fmt.Println("Len:", length(nums))
+		fmt.Println("Array:", nums)
+		fmt.Println("Sorted array:", sortarray(nums))
 	} else {
 		fmt.Println("Empty array")
 	}
@@ -49,4 +53,15 @@ func sum(array []int) int {
 		total = total + value
 	}
 	return total
+}
+
+func length(array []int) int {
+	return len(array)
+}
+
+func sortarray(array []int) []int {
+	var sorted []int = array
+	// sorted = sort.Ints(array)
+	sort.Ints(sorted)
+	return sorted
 }
